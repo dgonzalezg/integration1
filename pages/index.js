@@ -4,12 +4,12 @@ import fetch from 'isomorphic-unfetch';
 
 const Index = props => (
   <Layout>
-    <h1>Batman TV Shows</h1>
+    <h1>Rick and Morty Episodes</h1>
     <ul>
-      {props.shows.map(show => (
-        <li key={show.id}>
-          <Link href="/p/[id]" as={`/p/${show.id}`}>
-            <a>{show.name}</a>
+      {props.episodes.map(episode => (
+        <li key={episode.id}>
+          <Link href="/p/[id]" as={`/p/${episode.id}`}>
+            <a>{episode.name}</a>
           </Link>
         </li>
       ))}
@@ -18,13 +18,37 @@ const Index = props => (
 );
 
 Index.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
-  const data = await res.json();
 
-  console.log(`Show data fetched. Count: ${data.length}`);
-
+  const eresponse = await fetch('https://rickandmortyapi.com/api/episode').then(
+    (response) => {
+      return response.json();
+    }
+  );
+  
+ const pages = parseInt(eresponse.info.pages);
+  
+ const arr = []
+ let url = 'https://rickandmortyapi.com/api/episode/';
+  while (true) {
+    const eresponse = await fetch(url).then(
+    (response) => {
+      return response.json();
+    }
+  );
+  eresponse.results.forEach(episode => {
+    arr.push(episode)
+  });
+  if (eresponse.info.next != '') {
+    url = eresponse.info.next
+  }
+  else {
+    break
+  }
+  }
+  
+  
   return {
-    shows: data.map(entry => entry.show)
+    episodes: arr
   };
 };
 

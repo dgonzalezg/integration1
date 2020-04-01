@@ -4501,7 +4501,7 @@ Post.getInitialProps = function _callee(context) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 1:
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fp%2F%5Bid%5D&absolutePagePath=%2FUsers%2Fdiego%2FGoogle%20Drive%2FPUC%2F2020%2FTaller%20de%20Integracion%2FTarea%2FT1%2Fintegration1%2Fpages%2Fp%2F%5Bid%5D.js ***!
   \*************************************************************************************************************************************************************************************************************/
@@ -4524,5 +4524,5 @@ module.exports = dll_c2e10d183b950a67d9e7;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=[id].js.map

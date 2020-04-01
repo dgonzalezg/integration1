@@ -4452,16 +4452,16 @@ var Index = function Index(props) {
       lineNumber: 7,
       columnNumber: 5
     }
-  }, "Batman TV Shows"), __jsx("ul", {
+  }, "Rick and Morty Episodes"), __jsx("ul", {
     __self: _this,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 8,
       columnNumber: 5
     }
-  }, props.shows.map(function (show) {
+  }, props.episodes.map(function (episode) {
     return __jsx("li", {
-      key: show.id,
+      key: episode.id,
       __self: _this,
       __source: {
         fileName: _jsxFileName,
@@ -4470,7 +4470,7 @@ var Index = function Index(props) {
       }
     }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_3___default.a, {
       href: "/p/[id]",
-      as: "/p/".concat(show.id),
+      as: "/p/".concat(episode.id),
       __self: _this,
       __source: {
         fileName: _jsxFileName,
@@ -4484,34 +4484,65 @@ var Index = function Index(props) {
         lineNumber: 12,
         columnNumber: 13
       }
-    }, show.name)));
+    }, episode.name)));
   })));
 };
 
 Index.getInitialProps = function _callee() {
-  var res, data;
+  var eresponse, pages, arr, url, _eresponse;
+
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()('https://api.tvmaze.com/search/shows?q=batman'));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()('https://rickandmortyapi.com/api/episode').then(function (response) {
+            return response.json();
+          }));
 
         case 2:
-          res = _context.sent;
-          _context.next = 5;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(res.json());
+          eresponse = _context.sent;
+          pages = parseInt(eresponse.info.pages);
+          arr = [];
+          url = 'https://rickandmortyapi.com/api/episode/';
 
-        case 5:
-          data = _context.sent;
-          console.log("Show data fetched. Count: ".concat(data.length));
-          return _context.abrupt("return", {
-            shows: data.map(function (entry) {
-              return entry.show;
-            })
+        case 6:
+          if (false) {}
+
+          _context.next = 9;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()(url).then(function (response) {
+            return response.json();
+          }));
+
+        case 9:
+          _eresponse = _context.sent;
+
+          _eresponse.results.forEach(function (episode) {
+            arr.push(episode);
           });
 
-        case 8:
+          if (!(_eresponse.info.next != '')) {
+            _context.next = 15;
+            break;
+          }
+
+          url = _eresponse.info.next;
+          _context.next = 16;
+          break;
+
+        case 15:
+          return _context.abrupt("break", 18);
+
+        case 16:
+          _context.next = 6;
+          break;
+
+        case 18:
+          return _context.abrupt("return", {
+            episodes: arr
+          });
+
+        case 19:
         case "end":
           return _context.stop();
       }
@@ -4523,7 +4554,7 @@ Index.getInitialProps = function _callee() {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!******************************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fdiego%2FGoogle%20Drive%2FPUC%2F2020%2FTaller%20de%20Integracion%2FTarea%2FT1%2Fintegration1%2Fpages%2Findex.js ***!
   \******************************************************************************************************************************************************************************************/
@@ -4546,5 +4577,5 @@ module.exports = dll_c2e10d183b950a67d9e7;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

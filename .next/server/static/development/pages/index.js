@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1914,15 +1914,15 @@ const Index = props => __jsx(_components_MyLayout__WEBPACK_IMPORTED_MODULE_1__["
     lineNumber: 7,
     columnNumber: 5
   }
-}, "Batman TV Shows"), __jsx("ul", {
+}, "Rick and Morty Episodes"), __jsx("ul", {
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
     lineNumber: 8,
     columnNumber: 5
   }
-}, props.shows.map(show => __jsx("li", {
-  key: show.id,
+}, props.episodes.map(episode => __jsx("li", {
+  key: episode.id,
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
@@ -1931,7 +1931,7 @@ const Index = props => __jsx(_components_MyLayout__WEBPACK_IMPORTED_MODULE_1__["
   }
 }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
   href: "/p/[id]",
-  as: `/p/${show.id}`,
+  as: `/p/${episode.id}`,
   __self: undefined,
   __source: {
     fileName: _jsxFileName,
@@ -1945,14 +1945,33 @@ const Index = props => __jsx(_components_MyLayout__WEBPACK_IMPORTED_MODULE_1__["
     lineNumber: 12,
     columnNumber: 13
   }
-}, show.name))))));
+}, episode.name))))));
 
 Index.getInitialProps = async function () {
-  const res = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()('https://api.tvmaze.com/search/shows?q=batman');
-  const data = await res.json();
-  console.log(`Show data fetched. Count: ${data.length}`);
+  const eresponse = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()('https://rickandmortyapi.com/api/episode').then(response => {
+    return response.json();
+  });
+  const pages = parseInt(eresponse.info.pages);
+  const arr = [];
+  let url = 'https://rickandmortyapi.com/api/episode/';
+
+  while (true) {
+    const eresponse = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()(url).then(response => {
+      return response.json();
+    });
+    eresponse.results.forEach(episode => {
+      arr.push(episode);
+    });
+
+    if (eresponse.info.next != '') {
+      url = eresponse.info.next;
+    } else {
+      break;
+    }
+  }
+
   return {
-    shows: data.map(entry => entry.show)
+    episodes: arr
   };
 };
 
@@ -1960,7 +1979,7 @@ Index.getInitialProps = async function () {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
