@@ -8,13 +8,13 @@ const Location = props => (
 <p>Type: {props.location.type}</p>
     <p>Dimension: {props.location.dimension}</p>
     <h2> Residents</h2>
-    {props.residents.map(resident => (
+    { props.residents[0] ? props.residents.map(resident => (
         <li key={resident.id}>
           <Link href="/character/[cid]" as={`/character/${resident.id}`}>
             <a>{resident.name}</a>
           </Link>
         </li>
-      ))}
+      )): 'No residents in this planet'}
        <style jsx>{`
   h1,
   a {
@@ -55,11 +55,14 @@ Location.getInitialProps = async function(context) {
     const resident = res.residents[i].split('/');
     rids.push(resident[resident.length-1]);
   };
-
-  const residents_arr = await fetch(`https://rickandmortyapi.com/api/character/${rids}`).then(
+  
+  let residents_arr = await fetch(`https://rickandmortyapi.com/api/character/${rids}`).then(
     (response) => {
       return response.json();
     })
+    if (rids.length == 0) {
+      residents_arr = [];
+    }
 
   return { location: res, residents: residents_arr };
 };
