@@ -8,7 +8,7 @@ const Index = props => (
     <ul>
       {props.episodes.map(episode => (
         <li key={episode.id}>
-          <Link href="/p/[id]" as={`/p/${episode.id}`}>
+          <Link href="/episode/[eid]" as={`/episode/${episode.id}`}>
             <a>{episode.name}</a>
           </Link>
         </li>
@@ -25,7 +25,7 @@ Index.getInitialProps = async function() {
     }
   );
   
- const pages = parseInt(eresponse.info.pages);
+
   
  const arr = []
  let url = 'https://rickandmortyapi.com/api/episode/';

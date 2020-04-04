@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import Search from './Search';
+import NameForm from './Search';
 
 const linkStyle = {
   marginRight: 15
@@ -9,9 +11,7 @@ const Header = () => (
     <Link href="/">
       <a style={linkStyle}>Home</a>
     </Link>
-    <Link href="/about">
-      <a style={linkStyle}>About</a>
-    </Link>
+    <NameForm></NameForm>
   </div>
 );
 
