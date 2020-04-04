@@ -11,9 +11,36 @@ const Index = props => (
           <Link href="/episode/[eid]" as={`/episode/${episode.id}`}>
             <a>{episode.name}</a>
           </Link>
+      <p>Release Date: {episode.air_date}</p>
+      <p>Episdode Code: {episode.episode}</p>
         </li>
       ))}
     </ul>
+    <style jsx>{`
+  h1,
+  a {
+    font-family: 'Arial';
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    margin: 5px 0;
+}
+  }
+
+  a {
+    text-decoration: none;
+    color: blue;
+  }
+
+  a:hover {
+    opacity: 0.6;
+  }
+`}</style>
   </Layout>
 );
 

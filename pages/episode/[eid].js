@@ -6,7 +6,7 @@ const Episode = props => (
   <Layout>
     <h1>{props.episode.name}</h1>
 <p>Release date: {props.episode.air_date}</p>
-    <p>Episode: {props.episode.episode}</p>
+    <p>Episdode Code: {props.episode.episode}</p>
     <h2> Characters in this episode</h2>
     {props.characters.map(character => (
         <li key={character.id}>
@@ -15,30 +15,30 @@ const Episode = props => (
           </Link>
         </li>
       ))}
-      <style jsx>{`
-        h1,
-        a {
-          font-family: 'Arial';
-        }
+       <style jsx>{`
+  h1,
+  a {
+    font-family: 'Arial';
+  }
 
-        ul {
-          padding: 0;
-        }
+  ul {
+    padding: 0;
+  }
 
-        li {
-          list-style: none;
-          margin: 5px 0;
-        }
+  li {
+    list-style: none;
+    margin: 5px 0;
+  }
 
-        a {
-          text-decoration: none;
-          color: blue;
-        }
+  a {
+    text-decoration: none;
+    color: blue;
+  }
 
-        a:hover {
-          opacity: 0.6;
-        }
-      `}</style>
+  a:hover {
+    opacity: 0.6;
+  }
+`}</style>
   </Layout>
 );
 
