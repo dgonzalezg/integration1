@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -270,7 +270,7 @@ class NameForm extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       }
     })), __jsx("input", {
       type: "submit",
-      value: "Submit",
+      value: "Search",
       __self: this,
       __source: {
         fileName: _jsxFileName,
@@ -2032,29 +2032,15 @@ const Index = props => __jsx(_components_MyLayout__WEBPACK_IMPORTED_MODULE_1__["
 }, episode.name))))));
 
 Index.getInitialProps = async function () {
-  const eresponse = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()('https://rickandmortyapi.com/api/episode').then(response => {
+  const eids = Array.from(Array(31).keys());
+  const neids = eids.map(i => {
+    return i + 1;
+  });
+  const eresponse = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()(`https://rickandmortyapi.com/api/episode/${neids}`).then(response => {
     return response.json();
   });
-  const arr = [];
-  let url = 'https://rickandmortyapi.com/api/episode/';
-
-  while (true) {
-    const eresponse = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default()(url).then(response => {
-      return response.json();
-    });
-    eresponse.results.forEach(episode => {
-      arr.push(episode);
-    });
-
-    if (eresponse.info.next != '') {
-      url = eresponse.info.next;
-    } else {
-      break;
-    }
-  }
-
   return {
-    episodes: arr
+    episodes: eresponse
   };
 };
 
@@ -2062,7 +2048,7 @@ Index.getInitialProps = async function () {
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

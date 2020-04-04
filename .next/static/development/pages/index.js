@@ -229,7 +229,7 @@ var NameForm = /*#__PURE__*/function (_React$Component) {
         }
       })), __jsx("input", {
         type: "submit",
-        value: "Submit",
+        value: "Search",
         __self: this,
         __source: {
           fileName: _jsxFileName,
@@ -4806,59 +4806,27 @@ var Index = function Index(props) {
 };
 
 Index.getInitialProps = function _callee() {
-  var eresponse, arr, url, _eresponse;
-
+  var eids, neids, eresponse;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()('https://rickandmortyapi.com/api/episode').then(function (response) {
+          eids = Array.from(Array(31).keys());
+          neids = eids.map(function (i) {
+            return i + 1;
+          });
+          _context.next = 4;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()("https://rickandmortyapi.com/api/episode/".concat(neids)).then(function (response) {
             return response.json();
           }));
 
-        case 2:
+        case 4:
           eresponse = _context.sent;
-          arr = [];
-          url = 'https://rickandmortyapi.com/api/episode/';
-
-        case 5:
-          if (false) {}
-
-          _context.next = 8;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()(url).then(function (response) {
-            return response.json();
-          }));
-
-        case 8:
-          _eresponse = _context.sent;
-
-          _eresponse.results.forEach(function (episode) {
-            arr.push(episode);
-          });
-
-          if (!(_eresponse.info.next != '')) {
-            _context.next = 14;
-            break;
-          }
-
-          url = _eresponse.info.next;
-          _context.next = 15;
-          break;
-
-        case 14:
-          return _context.abrupt("break", 17);
-
-        case 15:
-          _context.next = 5;
-          break;
-
-        case 17:
           return _context.abrupt("return", {
-            episodes: arr
+            episodes: eresponse
           });
 
-        case 18:
+        case 6:
         case "end":
           return _context.stop();
       }
@@ -4870,7 +4838,7 @@ Index.getInitialProps = function _callee() {
 
 /***/ }),
 
-/***/ 3:
+/***/ 1:
 /*!******************************************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fdiego%2FGoogle%20Drive%2FPUC%2F2020%2FTaller%20de%20Integracion%2FTarea%2FT1%2Fintegration1%2Fpages%2Findex.js ***!
   \******************************************************************************************************************************************************************************************/
@@ -4893,5 +4861,5 @@ module.exports = dll_c2e10d183b950a67d9e7;
 
 /***/ })
 
-},[[3,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

@@ -18,37 +18,20 @@ const Index = props => (
 );
 
 Index.getInitialProps = async function() {
-
-  const eresponse = await fetch('https://rickandmortyapi.com/api/episode').then(
-    (response) => {
-      return response.json();
-    }
-  );
-  
-
-  
- const arr = []
- let url = 'https://rickandmortyapi.com/api/episode/';
-  while (true) {
-    const eresponse = await fetch(url).then(
-    (response) => {
-      return response.json();
-    }
-  );
-  eresponse.results.forEach(episode => {
-    arr.push(episode)
-  });
-  if (eresponse.info.next != '') {
-    url = eresponse.info.next
-  }
-  else {
-    break
-  }
-  }
+ 
+ const eids = Array.from(Array(31).keys());
+  const neids = eids.map(i => {
+     return i+1;
+   });
+   const eresponse = await fetch(`https://rickandmortyapi.com/api/episode/${neids}`).then(
+     (response) => {
+       return response.json();
+     }
+   )
   
   
   return {
-    episodes: arr
+    episodes: eresponse
   };
 };
 
