@@ -1,5 +1,7 @@
 import Layout from '../../components/MyLayout';
 import Link from 'next/link';
+import { api_url } from '../../pages/index'
+
 const Results = props => (
 <Layout>
     <h1>Results</h1>
@@ -62,13 +64,13 @@ Results.getInitialProps = async function(context) {
   const neids = eids.map(i => {
      return i+1;
    });
-   const eresponse = await fetch(`https://rickandmortyapi.com/api/episode/${neids}`).then(
+   const eresponse = await fetch(`${api_url}episode/${neids}`).then(
      (response) => {
        return response.json();
      }
    )
    eresponse.forEach(episode => {
-    if (episode.name.toLowerCase().split(' ').includes(query.toLowerCase())) {
+    if (episode.name.toLowerCase().includes(query.toLowerCase())) {
       episodes.push(episode);
     }
   });
@@ -76,13 +78,13 @@ Results.getInitialProps = async function(context) {
    const ncids = cids.map(i => {
      return i+1;
    });
-   const cresponse = await fetch(`https://rickandmortyapi.com/api/character/${ncids}`).then(
+   const cresponse = await fetch(`${api_url}character/${ncids}`).then(
      (response) => {
        return response.json();
      }
    )
    cresponse.forEach(character => {
-    if (character.name.toLowerCase().split(' ').includes(query.toLowerCase())) {
+    if (character.name.toLowerCase().includes(query.toLowerCase())) {
       characters.push(character);
     }});
 
@@ -91,13 +93,13 @@ Results.getInitialProps = async function(context) {
    const nlids = cids.map(i => {
      return i+1;
    });
-   const lresponse = await fetch(`https://rickandmortyapi.com/api/location/${nlids}`).then(
+   const lresponse = await fetch(`${api_url}location/${nlids}`).then(
      (response) => {
        return response.json();
      }
    )
    lresponse.forEach(location => {
-    if (location.name.toLowerCase().split(' ').includes(query.toLowerCase())) {
+    if (location.name.toLowerCase().includes(query.toLowerCase())) {
       locations.push(location);
     }});
     

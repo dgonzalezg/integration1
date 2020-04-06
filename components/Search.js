@@ -1,6 +1,6 @@
 
 import Router from 'next/router'
-import fetch from 'isomorphic-unfetch';
+
 
 class NameForm extends React.Component {
   constructor(props) {

@@ -1,6 +1,7 @@
 import Layout from '../../components/MyLayout';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
+import { api_url } from '../../pages/index'
 
 const Location = props => (
   <Layout>
@@ -45,7 +46,7 @@ const Location = props => (
 Location.getInitialProps = async function(context) {
   const { lid } = context.query;
 
-  const res = await fetch(`https://rickandmortyapi.com/api/location/${lid}`).then(
+  const res = await fetch(`${api_url}location/${lid}`).then(
     (response) => {
       return response.json();
     }
@@ -56,7 +57,7 @@ Location.getInitialProps = async function(context) {
     rids.push(resident[resident.length-1]);
   };
   
-  let residents_arr = await fetch(`https://rickandmortyapi.com/api/character/${rids}`).then(
+  let residents_arr = await fetch(`${api_url}character/${rids}`).then(
     (response) => {
       return response.json();
     })

@@ -2,6 +2,8 @@ import Layout from '../components/MyLayout';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
 
+const api_url = 'https://integracion-rick-morty-api.herokuapp.com/api/';
+
 const Index = props => (
   <Layout>
     <h1>Rick and Morty Episodes</h1>
@@ -50,7 +52,7 @@ Index.getInitialProps = async function() {
   const neids = eids.map(i => {
      return i+1;
    });
-   const eresponse = await fetch(`https://rickandmortyapi.com/api/episode/${neids}`).then(
+   const eresponse = await fetch(`${api_url}episode/${neids}`).then(
      (response) => {
        return response.json();
      }
@@ -63,3 +65,4 @@ Index.getInitialProps = async function() {
 };
 
 export default Index;
+export {api_url};
